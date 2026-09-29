@@ -19,6 +19,8 @@ sap.ui.define([
                 council: [
                     { name: "Foo", salary: "15000" },
                     { name: "Bar", salary: "25000" },
+                    { name: "Baz", salary: "18000" },
+                    { name: "Quux", salary: "13000" },
                 ],
                 total: ""
             })
@@ -59,6 +61,26 @@ sap.ui.define([
             let fTotalRachada = fTotalSalary * (+this._oModelRachadinha.getProperty("/percentage") / 100)
 
             this._oModelRachadinha.setProperty("/total", fTotalRachada)
+        },
+
+        onRacharContinuamenteAteAPFAparecerPorra: function (oEvent) {
+
+            const aCouncil = this._oModelRachadinha.getProperty("/council")
+            const aSalary = aCouncil.map((oGhostEmployee) => {
+                return +oGhostEmployee.salary
+            })
+            const fPercentage = +this._oModelRachadinha.getProperty("/percentage")
+            let fTotalRachada = this._calculateRachadinha(fPercentage, aSalary)
+            this._oModelRachadinha.setProperty("/total", fTotalRachada)
+        },
+
+        _calculateRachadinha: function (fPercentage, aSalary) {
+
+            let fTotalSalary = aSalary.reduce((acc, cur) => {
+                return acc + cur
+            }, 0);
+
+            return (fTotalSalary * (fPercentage / 100)).toFixed(2)
         }
 
     });

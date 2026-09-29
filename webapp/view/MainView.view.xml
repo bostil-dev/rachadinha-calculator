@@ -1,6 +1,63 @@
-<mvc:View controllerName="calculator.controller.MainView"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+<mvc:View
+        xmlns:form="sap.ui.layout.form"
+        controllerName="calculator.controller.MainView"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns="sap.m">
+    <Page
+            id="page"
+            title="{i18n>MainViewPageTitle}">
+        <form:SimpleForm>
+            <form:content>
+                <Label text="{i18n>MainViewLabelTextRachada}" />
+                <Slider
+                        id="slider"
+                        enableTickmarks="true"
+                        min="1"
+                        max="100"
+                        value="90"
+                        showAdvancedTooltip="true"
+                        showHandleTooltip="false" />
+                <Label />
+                <Button
+                        text="{i18n>MainViewButtonText}"
+                        press=".onRachar" />
+            </form:content>
+        </form:SimpleForm>
+        <List id="list">
+            <headerToolbar>
+                <Toolbar>
+                    <Title text="Acessores de Flavio" />
+                </Toolbar>
+            </headerToolbar>
+            <items>
+                <InputListItem label="Foo">
+                    <content>
+                        <Input
+                                placeholder="{i18n>MainViewInputPlaceholderSalary}"
+                                type="Number"
+                                value="10000" />
+                    </content>
+                </InputListItem>
+                <InputListItem label="Bar">
+                    <content>
+                        <Input
+                                placeholder="{i18n>MainViewInputPlaceholderSalary}"
+                                type="Number"
+                                value="20000" />
+                    </content>
+                </InputListItem>
+            </items>
+        </List>
+        <footer>
+            <OverflowToolbar>
+                <content>
+                    <ToolbarSpacer />
+                    <Label text="Total:" />
+                    <Title
+                            id="title"
+                            text="1234" />
+                </content>
+            </OverflowToolbar>
+        </footer>
     </Page>
 </mvc:View>

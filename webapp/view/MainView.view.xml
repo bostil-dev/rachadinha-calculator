@@ -12,15 +12,15 @@
                 <Slider
                         id="slider"
                         enableTickmarks="true"
-                        min="1"
-                        max="100"
-                        value="90"
+                        min="{rachadinha>/min}"
+                        max="{rachadinha>/max}"
+                        value="{rachadinha>/percentage}"
                         showAdvancedTooltip="true"
                         showHandleTooltip="false" />
                 <Label />
                 <Button
                         text="{i18n>MainViewButtonText}"
-                        press=".onRachar" />
+                        press=".onRacharMaster" />
             </form:content>
         </form:SimpleForm>
         <List id="list">
@@ -30,20 +30,20 @@
                 </Toolbar>
             </headerToolbar>
             <items>
-                <InputListItem label="Foo">
+                <InputListItem label="{rachadinha>/council/0/name}">
                     <content>
                         <Input
                                 placeholder="{i18n>MainViewInputPlaceholderSalary}"
                                 type="Number"
-                                value="10000" />
+                                value="{rachadinha>/council/0/salary}" />
                     </content>
                 </InputListItem>
-                <InputListItem label="Bar">
+                <InputListItem label="{rachadinha>/council/1/name}">
                     <content>
                         <Input
                                 placeholder="{i18n>MainViewInputPlaceholderSalary}"
                                 type="Number"
-                                value="20000" />
+                                value="{rachadinha>/council/1/salary}" />
                     </content>
                 </InputListItem>
             </items>
@@ -55,7 +55,7 @@
                     <Label text="Total:" />
                     <Title
                             id="title"
-                            text="1234" />
+                            text="{rachadinha>/total}" />
                 </content>
             </OverflowToolbar>
         </footer>

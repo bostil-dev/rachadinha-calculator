@@ -21,7 +21,7 @@
                 <Label />
                 <Button
                         text="{i18n>MainViewButtonText}"
-                        press=".onRacharMaster" />
+                        press=".onAskQueirozToRachar" />
             </form:content>
         </form:SimpleForm>
         <List
@@ -29,7 +29,7 @@
                 items="{rachadinha>/council}">
             <headerToolbar>
                 <Toolbar>
-                    <Title text="Acessores de Flavio" />
+                    <Title text="{i18n>MainViewTitleTextRachador}" />
                 </Toolbar>
             </headerToolbar>
             <items>
@@ -37,6 +37,7 @@
                     <content>
                         <Input
                                 placeholder="{i18n>MainViewInputPlaceholderSalary}"
+                                width="10rem"
                                 type="Number"
                                 value="{rachadinha>salary}"
                                 valueLiveUpdate="true"

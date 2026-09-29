@@ -1,7 +1,11 @@
 sap.ui.define([
     "sap/ui/core/mvc/Controller",
-    "sap/ui/model/json/JSONModel"
-], (Controller, JSONModel) => {
+    "sap/ui/model/json/JSONModel",
+    "sap/m/MessageToast"
+], (
+    Controller,
+    JSONModel,
+    MessageToast) => {
     "use strict";
 
     return Controller.extend("calculator.controller.MainView", {
@@ -10,20 +14,30 @@ sap.ui.define([
          */
 
         _oModelRachadinha: null,
+        _oResourceBundle: null,
 
         onInit() {
-            this._oModelRachadinha = new JSONModel({
+
+            this._oResourceBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle()
+
+            const oRachadaData = {
                 min: 1,
                 max: 100,
                 percentage: 95,
                 council: [
-                    { name: "Foo", salary: "15000" },
-                    { name: "Bar", salary: "25000" },
-                    { name: "Baz", salary: "18000" },
-                    { name: "Quux", salary: "13000" },
+                    { name: "Wellington", salary: "15000" },
+                    { name: "Wal", salary: "25000" },
+                    { name: "Tercio", salary: "" },
+                    { name: "Nathalia Q.", salary: "" },
                 ],
                 total: ""
-            })
+            }
+            oRachadaData.total = this._calculateRachadinha(
+                oRachadaData.percentage,
+                oRachadaData.council.map((oGhost) => +oGhost.salary)
+            )
+            this._oModelRachadinha = new JSONModel(oRachadaData)
+
 
             this.getView().setModel(this._oModelRachadinha, "rachadinha")
         },
@@ -73,6 +87,12 @@ sap.ui.define([
             let fTotalRachada = this._calculateRachadinha(fPercentage, aSalary)
             this._oModelRachadinha.setProperty("/total", fTotalRachada)
         },
+
+        onAskQueirozToRachar: function (oEvent) {
+            const sMessage = this._oResourceBundle.getText("MessageQueirozAlreadyRachou")
+            MessageToast.show(sMessage)
+        },
+
 
         _calculateRachadinha: function (fPercentage, aSalary) {
 
